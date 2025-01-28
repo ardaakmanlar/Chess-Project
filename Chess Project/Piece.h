@@ -5,10 +5,9 @@
 using namespace sf;
 
 
-class Piece{
+class Piece {
 private:
 	Sprite pieceSprite;
-	Texture pieceTexture;
 	int x;
 	int y;
 	bool team;
@@ -18,9 +17,5 @@ public:
 	Sprite getSprite()const;
 	bool getTeam()const;
 
-	void setPieceTexture(const Texture& tex);
-	void setSpriteTexture();
+	void setSpriteTexture(Texture& tex);
 };
-
-
-
