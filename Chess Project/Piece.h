@@ -18,4 +18,6 @@ public:
 	bool getTeam()const;
 
 	void setSpriteTexture(Texture& tex);
+	void setPosition(int x, int y);
+	void setPosition(Vector2f);
 };
