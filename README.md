@@ -4,14 +4,15 @@
 Current Features 
 
 •Classic Chess Board Setup 
+
 •Pawn Movement Implemented 
+
 •Click-Based Piece Selection & Movement 
+
 
 How to Play? 
 
-Select the piece you want to move by clicking on it.
-
-Click on the target square where you want the piece to move.
+Select the piece you want to move by clicking on it. Click on the target square where you want the piece to move.
 
 Currently, only pawns can move.
 
