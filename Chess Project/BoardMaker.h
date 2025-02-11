@@ -1,38 +1,25 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Piece.h"
-#include "Pieces.h"
+#include "Position.h"
 
-using namespace std;
-using namespace sf;
-
-struct Position{
-	int x;
-	int y;
-};
-
-class Move {
-public:
-	Position curentPos;
-	Position nextPos;
-	bool operator==(const Move& other);
-};
-
-void LoadTextures(Texture Textures[]);
+void LoadTextures(sf::Texture Textures[]);
 
 
-void placePieces(vector <Piece*>& Pieces, Texture Textures[], vector <Position> piecePosisions);
+void placePieces(std::vector <Piece*>& Pieces, sf::Texture Textures[], std::vector <PiecePosition>& piecePosisions);
 
 
 
-void drawPieces(const vector <Piece*>& Pieces, RenderWindow& window);
-
+void drawPieces(const std::vector <Piece*>& Pieces, sf::RenderWindow& window);
 
 
 void calculatePosition(float& pX, float& pY);
 
 
-void placeSelectedSquare(RectangleShape& selectedSquare,float pX, float pY);
+void placeSelectedSquare(sf::RectangleShape& selectedSquare, float pX, float pY);
 
-void removeSelectedSquare(RectangleShape& selectedSquare);
+void removeSelectedSquare(sf::RectangleShape& selectedSquare);
 
+void playMove( Move& move,  std::vector <PiecePosition>& positions);
+
+void reverseTurn(bool& turn);

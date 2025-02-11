@@ -1,60 +1,64 @@
 #include <SFML/Graphics.hpp>
 #include "Chess.h"
-#include "Pieces.h"
+#include "Piece.h"
 #include "BoardMaker.h"
 #include <vector>
 #include <iostream>
-#include <chrono>
-#include <thread>
-
-
 
 using namespace std;
 using namespace sf;
 
-
-
 void Game::run() {
-	/*
-	* WIP
-	Move test, test1;
-	test.curentPos.x = 0;
-	test.curentPos.y = 0;
 
-	test.nextPos.x = 1;
-	test.nextPos.y = 1;
-	*/
+	bool turn = true; // Bool variable for tracking who will play white or black. True for white, false for black.
+	bool isMovesCalculated = false; 
 
-
-
-	bool turn = true; // True for white false for black.
+	//Vectors for tracking pieces.
 	vector <Piece*> Pieces;
-	vector <Position> piecePosisions;
+	vector <PiecePosition> piecePosisions;
 	Texture textures[12];
 	LoadTextures(textures);
 	placePieces(Pieces, textures, piecePosisions);
 
+
+	vector <Move> Moves; //Avaliable moves in that turn.
+	Move playerMove;
+
+
+	//Variables for rendaring board and pieces.
 	RenderWindow window(VideoMode(1024, 1024), "Chess", Style::Close);
-
-
 	Texture boardTexture;
 	Sprite boardSprite;
-
-
-	bool squareSelected = false;
-	RectangleShape selectedSqure({ 0.f,0.f });
-	selectedSqure.setFillColor(Color(96,96,96));
-	Vector2f selectedPosition;
 
 	boardTexture.loadFromFile("Textures/boardTexture.png");
 	boardSprite.setTexture(boardTexture);
 
 
-	Event event;
+	//Variables for square selection.
+	bool squareSelected = false;
+	RectangleShape selectedSqure({ 0.f,0.f });
+	selectedSqure.setFillColor(Color(96,96,96));
+	Vector2f selectedPosition;
 	float pX, pY; // pX and pY for holding mouse position.
 	bool mouseHeld = false; // Variable for holding mouse is wheter holding or not.
 
+	Event event; 
+
+
+
+
 	while (window.isOpen()) {
+
+
+		if (!isMovesCalculated) {
+			getMoves(Moves, piecePosisions, Pieces, turn);
+			isMovesCalculated = true;
+			cout << "Total Moves: " << Moves.size() << endl;
+			for (const auto& move : Moves) {
+				cout << "From (" << move.curentPos.x << ", " << move.curentPos.y << ")"
+					<< " to (" << move.nextPos.x << ", " << move.nextPos.y << ")" << endl;
+			}
+		}
 
 
 		while (window.pollEvent(event)) {
@@ -78,29 +82,31 @@ void Game::run() {
 					pX = event.mouseButton.x;
 					pY = event.mouseButton.y;
 					placeSelectedSquare(selectedSqure, pX, pY);
-					/*WIP
+
 					calculatePosition(pX, pY);
-					test1.curentPos.x = (int)(pX);
-					test1.curentPos.y = (int)(pY);
-					cout << "Current pos: " << test1.curentPos.x << " " << test1.curentPos.y << endl;
-					*/
+					playerMove.curentPos.x = (int)(pX);
+					playerMove.curentPos.y = (int)(pY);
+
 
 				}
 				else{
 					
 					squareSelected = false;
 					removeSelectedSquare(selectedSqure);
-					/*	WIP
 					pX = event.mouseButton.x;
 					pY = event.mouseButton.y;
 					calculatePosition(pX, pY);
-					test1.nextPos.x = (int)(pX);
-					test1.nextPos.y = (int)(pY);
-					cout << "Next pos: " << test1.nextPos.x << " " << test1.nextPos.y << endl;
-					if (test == test1) {
-						Pieces[1]->setPosition(pX, pY);
+					playerMove.nextPos.x = (int)(pX);
+					playerMove.nextPos.y = (int)(pY);
+					
+					if (isValidMove(Moves, playerMove)) {
+						playMove(playerMove, piecePosisions);
+						reverseTurn(turn);
+						isMovesCalculated = false;
+						Moves.clear();
 					}
-					*/
+
+
 				}
 			}
 		}

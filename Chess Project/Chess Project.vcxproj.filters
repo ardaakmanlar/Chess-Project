@@ -24,10 +24,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pieces.cpp">
+    <ClCompile Include="BoardMaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoardMaker.cpp">
+    <ClCompile Include="Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="Piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pieces.h">
+    <ClInclude Include="BoardMaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BoardMaker.h">
+    <ClInclude Include="Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
