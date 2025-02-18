@@ -27,3 +27,5 @@ public:
 
 bool isPositionEmpty(const std::vector<PiecePosition>& positions,const PiecePosition& pos); 
 bool isValidMove( std::vector<Move>& moves,  Move& pMove);
+bool isSquareHasEnemy(const std::vector<PiecePosition>& positions, const PiecePosition& pos, bool team);
+Piece* isDestinationHasPiece(const std::vector<PiecePosition>& positions, const Position& nextPos);

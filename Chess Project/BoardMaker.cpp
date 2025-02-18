@@ -171,7 +171,11 @@ void removeSelectedSquare(RectangleShape& selectedSquare) { //Removing square se
 
 
 void playMove(Move& move, std::vector <PiecePosition>& positions) {
+	Piece* enemyPiece = isDestinationHasPiece(positions, move.nextPos);
 
+	if (enemyPiece != nullptr) {
+
+	}
 	int i;
 	for (i = 0; i < positions.size(); i++) {
 		if (move.curentPos == positions[i].pos) {

@@ -56,3 +56,26 @@ bool Position::operator==(const Position& other) {
 	}
 	return false;
 }
+
+bool isSquareHasEnemy(const std::vector<PiecePosition>& positions, const PiecePosition& pos, bool team) {
+	for (int i = 0; i < positions.size(); i++) {
+		if(positions[i].ptr->getTeam() == team){
+			if (pos == positions[i])
+				return true;
+		}
+	}
+	return false;
+}
+
+Piece* isDestinationHasPiece(const std::vector<PiecePosition>& positions,const Position& nextPos) {
+	PiecePosition pos;
+	pos.pos.x = nextPos.x;
+	pos.pos.y = nextPos.y;
+	pos.ptr = nullptr;
+	for (int i = 0; i < positions.size(); i++) {
+		if (pos == positions[i]) {
+			return positions[i].ptr;
+		}
+	}
+	return nullptr;
+}

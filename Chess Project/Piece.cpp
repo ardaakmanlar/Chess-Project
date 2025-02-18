@@ -53,15 +53,33 @@ void pawnMove(std::vector <Move>& Moves, const std::vector <PiecePosition>& pos,
 
 	if (turn) {
 		PiecePosition  temp;
+		temp.ptr = nullptr;
+
+		//Check for diagonals for enemy pieces.
+		move.nextPos.x = piecePos.x - 1;
+		move.nextPos.y = piecePos.y - 1;
+		if (isSquareHasEnemy(pos, temp, false)) {
+			Moves.push_back(move);
+		}
+
+		move.nextPos.x = piecePos.x + 1;
+		move.nextPos.y = piecePos.y - 1;
+
+		if (isSquareHasEnemy(pos, temp, false)) {
+			Moves.push_back(move);
+		}
+
+		//Check for just 1 square move
 		temp.pos.x = piecePos.x;
 		temp.pos.y = piecePos.y - 1;
-		temp.ptr = nullptr;
 		if (!isPositionEmpty(pos, temp)) {
 			return;
 		}
 		move.nextPos.x = piecePos.x;
 		move.nextPos.y = piecePos.y - 1;;
 		Moves.push_back(move);
+
+		// If this is the first move of the pawn check for 2 square move
 		if (!piece->getIsPieceMoved()) {
 			temp.pos.y = piecePos.y - 2;
 			if (!isPositionEmpty(pos, temp)) {
@@ -71,9 +89,7 @@ void pawnMove(std::vector <Move>& Moves, const std::vector <PiecePosition>& pos,
 			move.nextPos.y = piecePos.y - 2;
 			Moves.push_back(move);
 		}
-		move.nextPos.x = piecePos.x - 1;
-		move.nextPos.y = piecePos.y - 1;
-
+		
 	}
 	else{
 		PiecePosition  temp;
