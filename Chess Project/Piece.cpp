@@ -43,7 +43,15 @@ void Piece::setPosition(Vector2f mousePos) {
 	pieceSprite.setPosition(mousePos);
 }
 
+void Piece::setPieceType(char type) {
+	pieceType = type;
+}
+
 void pawnMove(std::vector <Move>& Moves, const std::vector <PiecePosition>& pos, bool turn, const Piece* piece) {
+
+	if (piece->getTeam() != turn) {
+		return;
+	}
 	Position piecePos = piece->getPiecePosition();
 	Position nextPos;
 	Move move;
@@ -54,20 +62,27 @@ void pawnMove(std::vector <Move>& Moves, const std::vector <PiecePosition>& pos,
 	if (turn) {
 		PiecePosition  temp;
 		temp.ptr = nullptr;
-
+		
+		
+		
 		//Check for diagonals for enemy pieces.
-		move.nextPos.x = piecePos.x - 1;
-		move.nextPos.y = piecePos.y - 1;
+		temp.pos.x = piecePos.x - 1;
+		temp.pos.y = piecePos.y - 1;
 		if (isSquareHasEnemy(pos, temp, false)) {
+			move.nextPos.x = temp.pos.x;
+			move.nextPos.y = temp.pos.y;
 			Moves.push_back(move);
 		}
 
-		move.nextPos.x = piecePos.x + 1;
-		move.nextPos.y = piecePos.y - 1;
+		temp.pos.x = piecePos.x + 1;
+		temp.pos.y = piecePos.y - 1;
 
 		if (isSquareHasEnemy(pos, temp, false)) {
+			move.nextPos.x = temp.pos.x;
+			move.nextPos.y = temp.pos.y;
 			Moves.push_back(move);
 		}
+		
 
 		//Check for just 1 square move
 		temp.pos.x = piecePos.x;
@@ -120,7 +135,8 @@ void getMoves(vector <Move>& Moves,const  vector <PiecePosition>& pos,const std:
 	for (int i = 0; i < pieces.size(); i++){
 		switch (pieces[i]->getPieceType()){
 		case 'P':
-			pawnMove(Moves, pos, turn, pieces[i]);
+			if(pieces[i]->getPiecePosition().x != -1)
+				pawnMove(Moves, pos, turn, pieces[i]);
 			break;
 		default:
 			break;

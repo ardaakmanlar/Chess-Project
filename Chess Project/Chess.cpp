@@ -100,7 +100,7 @@ void Game::run() {
 					playerMove.nextPos.y = (int)(pY);
 					
 					if (isValidMove(Moves, playerMove)) {
-						playMove(playerMove, piecePosisions);
+						playMove(playerMove, piecePosisions, Pieces, textures);
 						reverseTurn(turn);
 						isMovesCalculated = false;
 						Moves.clear();

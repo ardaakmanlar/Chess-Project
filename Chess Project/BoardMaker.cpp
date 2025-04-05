@@ -170,11 +170,17 @@ void removeSelectedSquare(RectangleShape& selectedSquare) { //Removing square se
 }
 
 
-void playMove(Move& move, std::vector <PiecePosition>& positions) {
+void playMove(Move& move, std::vector <PiecePosition>& positions,std::vector <Piece*> Pieces, Texture Textures[]) {
 	Piece* enemyPiece = isDestinationHasPiece(positions, move.nextPos);
-
+	Piece* thisPiece = isDestinationHasPiece(positions, move.nextPos);
+	int enemyPieceIndex = findPieceIndex(Pieces, enemyPiece);
+	int thisPieceIndex = findPieceIndex(Pieces, enemyPiece);
 	if (enemyPiece != nullptr) {
-
+		if (enemyPieceIndex == -1) {
+			cerr << "Invalid piece index. ";
+			return;
+		}
+		Pieces[enemyPieceIndex]->setPosition(-1, -1);
 	}
 	int i;
 	for (i = 0; i < positions.size(); i++) {
@@ -186,10 +192,24 @@ void playMove(Move& move, std::vector <PiecePosition>& positions) {
 		positions[i].ptr->pieceMoved();
 	}
 
-
+	if (Pieces[thisPieceIndex]->getPieceType() == 'P') {
+		if (Pieces[thisPieceIndex]->getTeam()) {
+			if (move.nextPos.y == 0) {
+				cout << "BABABOY";
+				Pieces[thisPieceIndex]->setPieceType('Q');
+				Pieces[thisPieceIndex]->setSpriteTexture(Textures[8]);
+			}
+		}
+		else {
+			if (move.nextPos.y == 7) {
+				Pieces[thisPieceIndex]->setPieceType('Q');
+			}
+		}
+	}
 	positions[i].ptr->setPosition(move.nextPos.x, move.nextPos.y);
 	positions[i].pos.x = move.nextPos.x;
 	positions[i].pos.y = move.nextPos.y;
+
 }
 
 
@@ -199,4 +219,15 @@ void reverseTurn(bool& turn) {
 		return;
 	}
 	turn = true;
+}
+
+int findPieceIndex(std::vector <Piece*> Pieces, Piece* piece) {
+	int count = 0;
+	for (int i = 0; i < Pieces.size(); i++)	{
+		if (piece == Pieces[i]) {
+			return count;
+		}
+		count++;
+	}
+	return 0;
 }

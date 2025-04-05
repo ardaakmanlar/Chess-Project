@@ -32,7 +32,7 @@ public:
 	bool getIsPieceMoved()const;
 	Position getPiecePosition()const;
 
-
+	void setPieceType(char type);
 	void setSpriteTexture(sf::Texture& tex);
 	void setPosition(int x, int y);
 	void setPosition(sf::Vector2f);
