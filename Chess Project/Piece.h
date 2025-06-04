@@ -15,7 +15,7 @@ private:
 	bool team;//True for white, False for black.
 	char pieceType; //Piece type
 	//R for rook.
-	//A for night.
+	//A for knight.
 	//B for bishop.
 	//Q for queen.
 	//K for king.

@@ -161,7 +161,7 @@ void placeSelectedSquare(RectangleShape& selectedSquare, float pX, float pY) { /
 	//Calculating exact square for selected square.
 	int x = pX / 128, y = pY / 128;
 	selectedSquare.setPosition(x * 128, y * 128);
-	//Seting size to square size so we can see the square.
+	//Setting size to square size so we can see the square.
 	selectedSquare.setSize({ 128,128 });
 }
 
@@ -172,9 +172,9 @@ void removeSelectedSquare(RectangleShape& selectedSquare) { //Removing square se
 
 void playMove(Move& move, std::vector <PiecePosition>& positions,std::vector <Piece*> Pieces, Texture Textures[]) {
 	Piece* enemyPiece = isDestinationHasPiece(positions, move.nextPos);
-	Piece* thisPiece = isDestinationHasPiece(positions, move.nextPos);
+	Piece* thisPiece = isDestinationHasPiece(positions, move.curentPos);
 	int enemyPieceIndex = findPieceIndex(Pieces, enemyPiece);
-	int thisPieceIndex = findPieceIndex(Pieces, enemyPiece);
+	int thisPieceIndex = findPieceIndex(Pieces, thisPiece);
 	if (enemyPiece != nullptr) {
 		if (enemyPieceIndex == -1) {
 			cerr << "Invalid piece index. ";
@@ -229,5 +229,5 @@ int findPieceIndex(std::vector <Piece*> Pieces, Piece* piece) {
 		}
 		count++;
 	}
-	return 0;
+	return -1;
 }
