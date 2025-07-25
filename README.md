@@ -1,20 +1,30 @@
-# Chess Game with SFML
-  This project is two player Chess Game built using SFML.This project was created by a Computer Engineering student. As the development progresses, this README file will be updated accordingly.
+# ♟️ Chess Game with SFML
 
-Current Features 
+> 🛑 **This project is no longer being developed.**  
+> It was an experimental chess project built with C++ and SFML.  
+> Development stopped after implementing the basic functionality listed below.
 
-•Classic Chess Board Setup 
+---
 
-•Pawn Movement Implemented 
+## ✅ What Was Implemented
 
-•Click-Based Piece Selection & Movement 
+- Classic chess board rendering
+- Initial piece layout
+- Click-based piece selection
+- Pawn movement (including initial double step)
+- Basic turn alternation
+---
+## 🔧 Tech Stack
 
+- **C++**
+- **SFML** (Simple and Fast Multimedia Library
+---
+## 🎮 How to Play?
 
-How to Play? 
+1️⃣ Click on a **piece** you want to move.  
+2️⃣ Then click on the **square** you want to move it to.
 
-Select the piece you want to move by clicking on it. Click on the target square where you want the piece to move.
-
-Currently, only pawns can move.
+♟️ Only **pawns** are implemented for now.
 
 ![image](https://github.com/user-attachments/assets/77d5f2f4-d587-4317-a414-36dd9fca0850)
 ![image](https://github.com/user-attachments/assets/ee279eaa-8765-4581-99dc-08735d174e9d)
