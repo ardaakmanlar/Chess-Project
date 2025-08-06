@@ -3,7 +3,6 @@
 **Note:** This project is no longer being developed.
 
 This was a small experimental chess project built using **C++** and the **SFML** graphics library.  
-Development was discontinued after completing a few core gameplay features.
 
 ---
 
