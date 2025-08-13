@@ -18,8 +18,8 @@ This was a small experimental chess project built using **C++** and the **SFML**
 
 ## Tech Stack
 
-- C++
-- SFML (Simple and Fast Multimedia Library)
+- [C++](https://isocpp.org/) – core programming language  
+- [SFML](https://www.sfml-dev.org/) – Simple and Fast Multimedia Library for graphics rendering
 
 ---
 
